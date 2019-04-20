@@ -1,4 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Great+Vibes|Lato|Montserrat");
+@import "./reset.css";
+@import "./vars.css";
+
 body {
-  background-color: aquamarine;
-  color: aqua;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  font-family: var(--font-main);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
 }
