@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
+const helmet = require("helmet");
 
 const indexRouter = require("./routes/index");
 
@@ -13,6 +14,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+app.use(helmet());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

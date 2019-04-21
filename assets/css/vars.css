@@ -1,4 +1,5 @@
 :root {
+  --gutter: 7px;
   --bg-color: #faf9f6;
   --font-color: #424242;
   --font-main: "Montserrat", sans-serif;

@@ -1,0 +1,26 @@
+.header {
+  border-bottom: 4px double var(--font-color);
+  padding: calc(var(--gutter) * 4) calc(var(--gutter) * 2);
+}
+
+.header .details {
+  font-size: 0.75em;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: calc(var(--gutter) * 2);
+}
+
+.header .logo {
+  text-align: center;
+  padding-bottom: calc(var(--gutter) * 4);
+}
+
+.header .logo .h1 {
+  font-size: 2.5em;
+}
+
+.link {
+  color: var(--font-color);
+  text-decoration: none;
+  padding: 0 calc(var(--gutter) * 3);
+}

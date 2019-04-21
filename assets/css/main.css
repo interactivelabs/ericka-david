@@ -2,17 +2,7 @@
 @import "./reset.css";
 @import "./vars.css";
 
-body {
-  background-color: var(--bg-color);
-  color: var(--font-color);
-  font-family: var(--font-main);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-title);
-}
+@import "./shared.css";
+@import "./sections/header.css";
+@import "./sections/hero.css";
+@import "./sections/us.css";
