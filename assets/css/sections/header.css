@@ -1,6 +1,15 @@
 .header {
+  background-color: var(--bg-color);
   border-bottom: 4px double var(--font-color);
   padding: calc(var(--gutter) * 4) calc(var(--gutter) * 2);
+}
+
+.header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 .header .details {

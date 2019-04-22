@@ -7,7 +7,7 @@
   justify-content: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0% 50%;
+  background-position: 50% 50%;
 }
 
 .hero .info {
@@ -16,7 +16,6 @@
   text-align: center;
   border: 4px double var(--font-color);
   letter-spacing: 0.25em;
-  background-color: rgba(254, 254, 254, 0.5);
 }
 
 .hero .info .sub {

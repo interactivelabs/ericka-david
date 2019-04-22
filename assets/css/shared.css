@@ -30,6 +30,68 @@ h6,
   text-decoration: none;
 }
 
+button,
+.button {
+  font-size: 1em;
+  background-color: transparent;
+  border: 1px solid var(--font-color);
+  padding: calc(var(--gutter) * 2) calc(var(--gutter) * 4);
+  min-width: 260px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--font-color);
+}
+
+button.small,
+.button.small {
+  min-width: auto;
+}
+
 .tc {
   text-align: center;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.column-content {
+  text-align: center;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content-divider {
+  padding: calc(var(--gutter) * 12) 0;
+}
+
+.fal.big {
+  font-size: 3em;
+}
+
+.divider {
+  border-left: 4px double var(--font-color);
+  display: flex;
+  align-items: center;
+}
+
+.clear-title {
+  font-size: 2.5em;
+}
+
+.divider i {
+  font-size: 32px;
+  margin-left: -25px;
+  padding: var(--gutter);
+  background-color: var(--bg-color);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

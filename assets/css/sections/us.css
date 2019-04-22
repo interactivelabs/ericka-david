@@ -1,7 +1,5 @@
-.us {
-  display: flex;
-  justify-content: space-around;
-  padding: calc(var(--gutter) * 12) 0;
+#us.sticky {
+  margin-top: 180px;
 }
 
 .us .img {
@@ -11,27 +9,6 @@
   margin: 0 auto calc(var(--gutter) * 8) auto;
 }
 
-.us .partner {
-  text-align: center;
-  width: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .us .info {
   margin: calc(var(--gutter) * 4);
-}
-
-.divider {
-  border-left: 4px double var(--font-color);
-  display: flex;
-  align-items: center;
-}
-
-.divider i {
-  font-size: 32px;
-  margin-left: -25px;
-  padding: var(--gutter);
-  background-color: var(--bg-color);
 }
