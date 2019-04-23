@@ -87,6 +87,10 @@ img {
   padding-bottom: calc(var(--gutter) * 8);
 }
 
+.content-divider.compact {
+  padding-top: 0;
+}
+
 .fal.big {
   font-size: 3em;
 }
@@ -135,7 +139,8 @@ img {
     padding-left: 0;
     padding-right: 0;
   }
-  .content-divider {
+  .content-divider,
+  .content-divider.compact {
     padding-top: calc(var(--gutter) * 12);
     padding-bottom: calc(var(--gutter) * 12);
   }

@@ -1,7 +1,3 @@
-#us.sticky {
-  margin-top: 180px;
-}
-
 .us .img {
   border-radius: 10%;
   overflow: hidden;
@@ -10,4 +6,10 @@
 
 .us .info {
   margin: calc(var(--gutter) * 4);
+}
+
+@media all and (min-width: 575px) {
+  #us.sticky {
+    margin-top: 180px;
+  }
 }
