@@ -7,6 +7,10 @@
   flex-direction: column;
 }
 
+.counter {
+  margin-bottom: calc(var(--gutter) * 4);
+}
+
 .counter .number {
   font-size: 2.5em;
 }
@@ -16,13 +20,24 @@
   margin-right: calc(var(--gutter) * 2);
 }
 
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: -180px;
+}
+
 @media all and (min-width: 575px) {
   .rsvp-container {
     background-image: url(/img/frame_pink.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     max-width: 800px;
-    height: 100%;
+    height: 540px;
     max-height: 534px;
   }
 }

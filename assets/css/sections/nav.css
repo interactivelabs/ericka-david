@@ -87,7 +87,11 @@
     transform: none;
   }
 
-  button.close {
+  .close-button {
+    display: none;
+  }
+
+  .menu-button.closed {
     display: none;
   }
 

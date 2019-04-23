@@ -1,0 +1,10 @@
+#photos,
+.glider-contain {
+  width: 100%;
+  overflow: hidden;
+  clear: both;
+}
+
+.glider-slide img {
+  width: auto;
+}
