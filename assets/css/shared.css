@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
 }
 
 body {
@@ -28,6 +33,10 @@ h6,
   color: var(--font-color);
   font-family: var(--font-title);
   text-decoration: none;
+}
+
+.desk {
+  display: none;
 }
 
 button,
@@ -59,14 +68,23 @@ button.small,
 
 .column-content {
   text-align: center;
-  width: 380px;
+  width: 100%;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  margin: 0 auto;
+}
+
+img {
+  width: 100%;
 }
 
 .content-divider {
-  padding: calc(var(--gutter) * 12) 0;
+  padding-top: calc(var(--gutter) * 8);
+  padding-bottom: calc(var(--gutter) * 8);
 }
 
 .fal.big {
@@ -74,24 +92,65 @@ button.small,
 }
 
 .divider {
-  border-left: 4px double var(--font-color);
+  width: 100%;
   display: flex;
+  border-bottom: 4px double var(--font-color);
   align-items: center;
+  justify-content: center;
+}
+
+.divider i {
+  font-size: 32px;
+  margin-bottom: -25px;
+  padding: var(--gutter);
+  background-color: var(--bg-color);
+}
+
+.divider.horizontal {
+  margin-top: calc(var(--gutter) * 4);
+  margin-bottom: calc(var(--gutter) * 4);
 }
 
 .clear-title {
   font-size: 2.5em;
 }
 
-.divider i {
-  font-size: 32px;
-  margin-left: -25px;
-  padding: var(--gutter);
-  background-color: var(--bg-color);
-}
-
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media all and (max-width: 575px) {
+  .desk {
+    display: none;
+  }
+}
+
+@media all and (min-width: 575px) {
+  .mobile {
+    display: none;
+  }
+  .column-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .content-divider {
+    padding-top: calc(var(--gutter) * 12);
+    padding-bottom: calc(var(--gutter) * 12);
+  }
+  .divider {
+    width: 0;
+    height: auto;
+    border-left: 4px double var(--font-color);
+    border-bottom: none;
+  }
+  .divider.horizontal {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .divider i {
+    margin-left: calc(var(--gutter) * -1);
+    margin-bottom: 0;
+  }
 }

@@ -11,23 +11,28 @@ window.addEventListener("load", () => {
   });
   const us = document.getElementById("us");
   const header = document.getElementById("header");
-  const waypoint = new Waypoint({
-    element: header,
-    handler: dir => {
-      if (dir === "down") {
-        us.classList.add("sticky");
-        return header.classList.add("sticky");
+  const gliderElement = document.getElementById("glider");
+  if (header) {
+    new Waypoint({
+      element: header,
+      handler: dir => {
+        if (dir === "down") {
+          us.classList.add("sticky");
+          return header.classList.add("sticky");
+        }
+        us.classList.remove("sticky");
+        return header.classList.remove("sticky");
       }
-      us.classList.remove("sticky");
-      return header.classList.remove("sticky");
-    }
-  });
-  new Glider(document.getElementById("glider"), {
-    dots: ".dots",
-    rewind: true,
-    arrows: {
-      prev: ".glider-prev",
-      next: ".glider-next"
-    }
-  });
+    });
+  }
+  if (gliderElement) {
+    new Glider(gliderElement, {
+      dots: ".dots",
+      rewind: true,
+      arrows: {
+        prev: ".glider-prev",
+        next: ".glider-next"
+      }
+    });
+  }
 });
