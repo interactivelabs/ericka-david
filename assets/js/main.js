@@ -1,5 +1,5 @@
 import Glider from "./glider";
-import ScrollReveal from "ScrollReveal";
+// import ScrollReveal from "ScrollReveal";
 import differenceInDays from "date-fns/difference_in_days";
 import differenceInHours from "date-fns/difference_in_hours";
 import differenceInMinutes from "date-fns/difference_in_minutes";
@@ -8,8 +8,9 @@ import addHours from "date-fns/add_hours";
 
 require("waypoints/lib/noframework.waypoints");
 
-window.addEventListener("load", () => {
-  const WEDDING_DATE = new Date(2019, 7, 20, 18, 0);
+const WEDDING_DATE = new Date(2019, 7, 20, 18, 0);
+
+const menuInit = us => {
   const header = document.getElementById("header");
   const links = document.getElementsByClassName("link");
   const menuButton = document.getElementById("menu-button");
@@ -27,54 +28,75 @@ window.addEventListener("load", () => {
     const link = links[idx];
     link.addEventListener("click", handleClose);
   }
+  new Waypoint({
+    element: header,
+    handler: dir => {
+      if (dir === "down") {
+        if (us) {
+          us.classList.add("sticky");
+        }
+        return header.classList.add("sticky");
+      }
+      if (us) {
+        us.classList.remove("sticky");
+      }
+      return header.classList.remove("sticky");
+    }
+  });
+};
 
-  const us = document.getElementById("us");
-  if (us) {
-    const gliderElement = document.getElementById("glider");
-    const etlDays = document.getElementById("etl-days");
-    const etlHours = document.getElementById("etl-hours");
-    const etlMinutes = document.getElementById("etl-minutes");
-    const scrollReveal = new ScrollReveal();
-    scrollReveal.reveal(".column-content", {
-      delay: 300,
-      distance: "100px",
-      interval: 100
+const mainSiteInit = () => {
+  const gliderElement = document.getElementById("glider");
+  const etlDays = document.getElementById("etl-days");
+  const etlHours = document.getElementById("etl-hours");
+  const etlMinutes = document.getElementById("etl-minutes");
+  const scrollReveal = new ScrollReveal();
+  scrollReveal.reveal(".column-content", {
+    delay: 300,
+    distance: "100px",
+    interval: 100
+  });
+  if (gliderElement) {
+    new Glider(gliderElement, {
+      dots: ".dots",
+      rewind: true,
+      arrows: {
+        prev: ".glider-prev",
+        next: ".glider-next"
+      }
     });
-    if (header) {
-      new Waypoint({
-        element: header,
-        handler: dir => {
-          if (dir === "down") {
-            us.classList.add("sticky");
-            return header.classList.add("sticky");
-          }
-          us.classList.remove("sticky");
-          return header.classList.remove("sticky");
-        }
-      });
-    }
-    if (gliderElement) {
-      new Glider(gliderElement, {
-        dots: ".dots",
-        rewind: true,
-        arrows: {
-          prev: ".glider-prev",
-          next: ".glider-next"
-        }
-      });
-    }
-    const updateETL = () => {
-      let currentDate = new Date();
-      const daysToWedding = differenceInDays(WEDDING_DATE, currentDate);
-      currentDate = addDays(currentDate, daysToWedding);
-      const hoursToWedding = differenceInHours(WEDDING_DATE, currentDate);
-      currentDate = addHours(currentDate, hoursToWedding);
-      const minutesToWedding = differenceInMinutes(WEDDING_DATE, currentDate);
-      etlDays.innerHTML = daysToWedding;
-      etlHours.innerHTML = hoursToWedding;
-      etlMinutes.innerHTML = minutesToWedding;
-    };
-    updateETL();
-    setInterval(() => updateETL, 1000);
+  }
+  const updateETL = () => {
+    let currentDate = new Date();
+    const daysToWedding = differenceInDays(WEDDING_DATE, currentDate);
+    currentDate = addDays(currentDate, daysToWedding);
+    const hoursToWedding = differenceInHours(WEDDING_DATE, currentDate);
+    currentDate = addHours(currentDate, hoursToWedding);
+    const minutesToWedding = differenceInMinutes(WEDDING_DATE, currentDate);
+    etlDays.innerHTML = daysToWedding;
+    etlHours.innerHTML = hoursToWedding;
+    etlMinutes.innerHTML = minutesToWedding;
+  };
+  updateETL();
+  setInterval(() => updateETL, 1000);
+};
+
+const rsvpInit = () => {
+  const envelope = document.getElementById("envelope");
+  envelope.addEventListener("click", () => {
+    envelope.classList.remove("new");
+    envelope.classList.add("open");
+  });
+};
+
+window.addEventListener("load", () => {
+  const us = document.getElementById("us");
+  const rsvpForm = document.getElementById("rsvp-form");
+  menuInit();
+  if (us) {
+    mainSiteInit(us);
+  }
+  if (rsvpForm) {
+    rsvpInit(rsvpForm);
   }
 });

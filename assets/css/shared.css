@@ -51,6 +51,11 @@ button,
   color: var(--font-color);
 }
 
+button .icon,
+.button .icon {
+  margin-left: var(--gutter);
+}
+
 button.small,
 .button.small {
   min-width: auto;
