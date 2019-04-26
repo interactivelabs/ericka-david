@@ -1,12 +1,14 @@
-section#rsvp-form.rsvp-form
+section#rsvp-page.rsvp-page
   h1.title Confirma
   img.column-content(src="/img/footer_pink.jpg", alt="Flowers devider")
   .column-content
-    label(for="name") Nombre
-    input(type="text", name="name", id="name", placeholder="Nombre")
-    button(type="button")
-      span Buscar
-      i.fal.fa-search.icon
+    form#rsvp-form
+      label(for="name") Nombre
+      input(type="text", name="name", id="name", placeholder="Nombre")
+      button(type="submit")
+        span Buscar
+        i.fal.fa-search.icon
+      ul#guests-list.guests-list
   #envelope.envelope.new
     .front
       .mailme
