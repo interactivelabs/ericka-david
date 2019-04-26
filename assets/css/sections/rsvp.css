@@ -27,7 +27,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 .rsvp-form img {
@@ -166,6 +165,7 @@
   font-family: "Allan", sans-serif;
   color: #1f1f1f;
 }
+
 .envelope .front,
 .envelope .back {
   position: absolute;
@@ -175,6 +175,7 @@
   border-radius: 5px;
   box-shadow: inset 0 0 30px -5px #a87e50, 0 0 20px -5px;
 }
+
 .envelope .front {
   backface-visibility: hidden;
   cursor: pointer;
@@ -183,6 +184,7 @@
 .envelope .front:focus {
   outline: none;
 }
+
 .envelope .front .stamp {
   transform: translate3d(0, 0, 1px);
   position: absolute;
