@@ -5,6 +5,7 @@ import differenceInHours from "date-fns/difference_in_hours";
 import differenceInMinutes from "date-fns/difference_in_minutes";
 import addDays from "date-fns/add_days";
 import addHours from "date-fns/add_hours";
+import fetch from "ifetch";
 
 require("waypoints/lib/noframework.waypoints");
 
@@ -81,6 +82,36 @@ const mainSiteInit = () => {
   setInterval(() => updateETL, 1000);
 };
 
+const handleConfirm = () => {};
+
+const confirm = guestId =>
+  fetch("/api/guest/confirm")
+    .then(r => r.json())
+    .then(data => handleConfirm(data));
+
+const getGuestLi = guest => {
+  const item = new li();
+  const link = new a();
+  link.innerHTML = guest.name;
+  link.classList.add("guest-link");
+  link.addEventListener("click", () => confirm(guest.id));
+  item.append(link);
+  item.classList.add("guest-item");
+  return item;
+};
+
+const updateGuest = data => {
+  const guestsList = document.getElementById("guests-list");
+  const { guests } = data;
+  const items = guests.map(g => getGuestLi(g));
+  guestsList.append(items);
+};
+
+const searchGuest = guest =>
+  fetch(`/api/guest/${guest}`)
+    .then(r => r.json())
+    .then(data => updateGuest(data));
+
 const rsvpInit = () => {
   const envelope = document.getElementById("envelope");
   envelope.addEventListener("click", () => {
@@ -91,7 +122,7 @@ const rsvpInit = () => {
 
 window.addEventListener("load", () => {
   const us = document.getElementById("us");
-  const rsvpForm = document.getElementById("rsvp-form");
+  const rsvpForm = document.getElementById("rsvp-page");
   menuInit();
   if (us) {
     mainSiteInit(us);
