@@ -5,24 +5,42 @@ const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
 const helmet = require("helmet");
+const session = require("cookie-session");
 
 const indexRouter = require("./routes/index");
-
+const guestsRouter = require("./routes/guests");
 const app = express();
+const expiryDate = new Date(Date.now() + 60 * 60 * 1000 * 24); // 24 hours
+
+const key01 = process.env.ERICKA_KEY_01;
+const key02 = process.env.ERICKA_KEY_02;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-
 app.use(helmet());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  session({
+    name: "session",
+    keys: [key01, key02],
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      domain: "localhost",
+      path: "er-dv",
+      expires: expiryDate
+    }
+  })
+);
 app.use(favicon(path.join(__dirname, "public/img", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
+app.use(indexRouter);
+app.use(guestsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -30,7 +48,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

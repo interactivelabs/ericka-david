@@ -1,17 +1,15 @@
 const db = require("./db");
+const query = db;
 
 class guestClient {
   async searchGuest(name) {
-    const result = await db.find({ name });
-    return result;
+    const sql =
+      "SELECT * FROM guests WHERE firstname ilike $1 OR lastname ilike $1 OR familyname ilike $1;";
+    const result = await query(sql, [name]);
+    return result.rows;
   }
-  async createhGuest(guest) {
-    const result = await db.add({ guest });
-    return result;
-  }
-  async confirm(guestId) {
-    const result = await db.update({ guestId });
-    return result;
+  async confirm(code) {
+    return await true;
   }
 }
 

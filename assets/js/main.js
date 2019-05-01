@@ -5,7 +5,6 @@ import differenceInHours from "date-fns/difference_in_hours";
 import differenceInMinutes from "date-fns/difference_in_minutes";
 import addDays from "date-fns/add_days";
 import addHours from "date-fns/add_hours";
-import fetch from "ifetch";
 
 require("waypoints/lib/noframework.waypoints");
 
