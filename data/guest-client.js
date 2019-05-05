@@ -1,3 +1,4 @@
+const uuid = require("uuid/v1");
 const db = require("./db");
 const query = db;
 
@@ -13,8 +14,16 @@ class GuestClient {
     const result = await query(sql, [name]);
     return result.rows;
   }
-  async addGuest(values) {
-    console.log(values);
+  async addGuest(guest) {
+    const code = uuid();
+    let values = Object.assign(guest, { code });
+    const keys = Object.keys(values).sort();
+    const params = keys.map((k, i) => `$${i + 1}`);
+    const sql = `INSERT INTO guests (${keys.join(
+      ","
+    )}) VALUES (${params}) RETURNING guestid`;
+    const result = await query(sql, keys.map(k => values[k]));
+    values = Object.assign(values, { guestid: result.rows[0].guestid });
     return values;
   }
   async confirm(code) {

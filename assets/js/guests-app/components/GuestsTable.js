@@ -12,16 +12,20 @@ const GestsTable = ({ guests }) => (
             <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Familia</th>
-            <th scope="col">Confirmado</th>
+            <th scope="col" className="text-center">
+              Confirmado
+            </th>
           </tr>
         </thead>
         <tbody>
           {guests.map(guest => (
-            <tr>
+            <tr key={guest.guestid}>
               <td>{guest.firstname}</td>
               <td>{guest.lastname}</td>
               <td>{guest.familyname}</td>
-              <td>{guest.confirmed}</td>
+              <td className="text-center">
+                <input type="checkbox" readOnly checked={guest.confirmed} />
+              </td>
             </tr>
           ))}
         </tbody>

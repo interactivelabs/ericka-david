@@ -4,9 +4,9 @@ const GuestClient = require("../data/guest-client");
 const env = process.env.NODE_ENV || "development";
 const guestClient = new GuestClient();
 
-router.get("/guests", (req, res) => {
-  res.render("guests", { title: "Ericka y David - Invitados", env: env });
-});
+router.get("/guests", (req, res) =>
+  res.render("guests", { title: "Ericka y David - Invitados", env: env })
+);
 
 router.get("/api/guests", async (req, res) => {
   const result = await guestClient.getAllGuests();
@@ -25,7 +25,6 @@ router.post("/api/guests", async (req, res) => {
   return res.send(result);
 });
 
-// Implement csrf
 router.post("/api/guests/confirm", async (req, res) => {
   const { guestId } = req.body;
   const result = await guestClient.confirm(guestId);
