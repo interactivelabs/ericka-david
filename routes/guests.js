@@ -8,14 +8,21 @@ router.get("/guests", (req, res) => {
   res.render("guests", { title: "Ericka y David - Invitados", env: env });
 });
 
-router.get("/api/guests/:name", async (req, res) => {
-  const { guest } = req.body;
-  const result = await guestClient.searchGuest(guest);
+router.get("/api/guests", async (req, res) => {
+  const result = await guestClient.getAllGuests();
   return res.send(result);
 });
 
-router.post("/api/guest", () => {
-  // Create new guest;
+router.get("/api/guests/:name", async (req, res) => {
+  const { name } = req.params;
+  const result = await guestClient.searchGuest(name);
+  return res.send(result);
+});
+
+router.post("/api/guests", async (req, res) => {
+  const { body } = req;
+  const result = await guestClient.addGuest(body);
+  return res.send(result);
 });
 
 // Implement csrf

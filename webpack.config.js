@@ -1,5 +1,5 @@
 const path = require("path");
-const mode = process.env.NODE_ENV || "production";
+const mode = process.env.NODE_ENV || "development";
 
 module.exports = {
   entry: {
@@ -14,8 +14,9 @@ module.exports = {
     rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
   },
   externals: {
-    React: "React",
+    react: "React",
     "react-dom": "ReactDOM",
+    "prop-types": "PropTypes",
     ScrollReveal: "ScrollReveal"
   }
 };
