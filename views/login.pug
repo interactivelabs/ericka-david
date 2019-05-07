@@ -1,0 +1,12 @@
+extends guests/layout
+
+block content
+  #login.cover-container.d-flex.w-50.h-100.p-3.mx-auto.flex-column
+    .inner.cover
+      form(action="/login", method="post").form-signin
+        h1.h3.mb-3.font-weight-normal Login
+        label(for="username") Username
+        input.my-3#username.form-control(type="text" name="username" placeholder="Username" required autofocus)
+        label(for="password") Password
+        input.my-3#password.form-control(type="password" name="password" placeholder="Password" required)
+        button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in

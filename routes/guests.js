@@ -1,15 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const GuestClient = require("../data/guest-client");
-const env = process.env.NODE_ENV || "development";
 const guestClient = new GuestClient();
+const { secure } = require("../lib");
 
-router.get("/guests", (req, res) =>
-  res.render("guests", { title: "Ericka y David - Invitados", env: env })
-);
+const title = "Ericka y David - Invitados";
 
-router.get("/api/guests", async (req, res) => {
+router.get("/guests", secure, (req, res) => res.render("guests", { title }));
+
+router.get("/api/guests", secure, async (req, res) => {
   const result = await guestClient.getAllGuests();
+  return res.send(result);
+});
+
+router.post("/api/guests", secure, async (req, res) => {
+  const { body } = req;
+  const result = await guestClient.addGuest(body);
   return res.send(result);
 });
 
@@ -19,13 +25,7 @@ router.get("/api/guests/:name", async (req, res) => {
   return res.send(result);
 });
 
-router.post("/api/guests", async (req, res) => {
-  const { body } = req;
-  const result = await guestClient.addGuest(body);
-  return res.send(result);
-});
-
-router.post("/api/guests/confirm", async (req, res) => {
+router.post("/api/guests/confirm/:guestId", async (req, res) => {
   const { guestId } = req.body;
   const result = await guestClient.confirm(guestId);
   return res.send(result);

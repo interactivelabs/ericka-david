@@ -4,5 +4,7 @@ import App from "./guests-app/App";
 
 window.addEventListener("load", () => {
   const container = document.getElementById("guest-app");
-  render(<App />, container);
+  if (container) {
+    render(<App />, container);
+  }
 });

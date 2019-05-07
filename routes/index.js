@@ -4,8 +4,10 @@ const GuestClient = require("../data/guest-client");
 
 const guestClient = new GuestClient();
 
+const title = "Ericka y David - Julio 20 2019";
+
 router.get("/", (req, res) => {
-  res.render("index", { title: "Ericka y David - Inicio" });
+  res.render("index", { title });
 });
 
 router.get("/rsvp/:guestId?", async (req, res) => {
@@ -15,7 +17,7 @@ router.get("/rsvp/:guestId?", async (req, res) => {
     result = await guestClient.confirm(guestId);
   }
   return res.render("rsvp", {
-    title: "Ericka y David - Confirma",
+    title,
     guest: result.guest
   });
 });
