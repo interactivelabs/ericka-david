@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const GuestClient = require("../data/guest-client");
 const guestClient = new GuestClient();
-const { secure } = require("../lib");
+const { secure } = require("../lib/route-middleware");
 
 const title = "Ericka y David - Invitados";
 
