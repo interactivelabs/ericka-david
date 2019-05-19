@@ -19,6 +19,9 @@ const app = express();
 
 const key01 = process.env.ERICKA_KEY_01;
 const key02 = process.env.ERICKA_KEY_02;
+const user = process.env.ERICKA_USER;
+const pwd = process.env.ERICKA_PWD;
+
 const session = cookieSession({
   name: "session",
   keys: [key01, key02],
@@ -30,11 +33,9 @@ const session = cookieSession({
   }
 });
 
-// username !== "morelia2019" ||
-// password !== "dios_es_mi_pastor_yea_yea"
 passport.use(
   new Strategy((username, password, done) => {
-    if (username !== "a" || password !== "a") {
+    if (username !== user || password !== pwd) {
       return done({ msg: "Incorrect username or password" }, null);
     }
     return done(null, { level: "admin", id: 1 });
