@@ -13,7 +13,7 @@ const authRouter = require("./routes/auth");
 const indexRouter = require("./routes/index");
 const guestsRouter = require("./routes/guests");
 
-const { expiryDate } = require("./lib");
+const { expiryDate } = require("./lib/route-middleware");
 
 const app = express();
 

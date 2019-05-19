@@ -1,6 +1,9 @@
 const uuid = require("uuid/v1");
+const BitlyClient = require("../lib/BitlyClient");
 const db = require("./db");
 const query = db;
+
+const bitlyClient = new BitlyClient();
 
 class GuestClient {
   async getAllGuests() {
@@ -15,8 +18,11 @@ class GuestClient {
     return result.rows;
   }
   async addGuest(guest) {
-    const code = uuid();
-    let values = Object.assign(guest, { code });
+    const code = uuid().replace(/-/g, "");
+    const link = await bitlyClient.sorten(
+      `https://www.ericka-david.com/confirm/${encodeURIComponent(code)}`
+    );
+    let values = Object.assign(guest, { code, link });
     const keys = Object.keys(values).sort();
     const params = keys.map((k, i) => `$${i + 1}`);
     const sql = `INSERT INTO guests (${keys.join(
