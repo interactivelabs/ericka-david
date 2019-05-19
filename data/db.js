@@ -1,7 +1,8 @@
 const Pool = require("pg").Pool;
 
 let pool;
-const connectionString = "postgresql://localhost:5432/ericka";
+const connectionString =
+  process.env.DATABASE_URL || "postgresql://localhost:5432/ericka";
 
 if (!pool) {
   pool = new Pool({ connectionString });
