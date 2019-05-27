@@ -19,9 +19,10 @@ class GuestClient {
   }
   async addGuest(guest) {
     const code = uuid().replace(/-/g, "");
-    const link = await bitlyClient.sorten(
-      `https://www.ericka-david.com/confirm/${encodeURIComponent(code)}`
+    const sorten = await bitlyClient.sorten(
+      `http://www.ericka-david.life/confirm/${encodeURIComponent(code)}`
     );
+    const { link } = sorten;
     let values = Object.assign(guest, { code, link });
     const keys = Object.keys(values).sort();
     const params = keys.map((k, i) => `$${i + 1}`);

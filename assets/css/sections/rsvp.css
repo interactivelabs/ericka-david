@@ -398,11 +398,10 @@
 
 @media all and (min-width: 575px) {
   .rsvp-container {
-    background-image: url(/img/frame_pink.jpg);
+    background-image: url(/img/ring.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
     max-width: 800px;
-    height: 540px;
-    max-height: 534px;
+    height: 964px;
   }
 }
