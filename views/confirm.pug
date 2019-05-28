@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  h1= guest.firstname
+  include sections/nav
+  section#confirm.confirm
+    if guest.notFound
+      h1 Invitado no se encontro
+    else
+      h1
+        | #{guest.firstname}
+        | #{guest.lastname}
+      p Gracias por confirmar
+      img(src="/img/Front_Final_large.jpg")
+      img(src="/img/Back_Final_large.jpg")
+    footer
+      a.link(href="https://www.freepik.com/free-photos-vectors/brochure") Flores e invitaciones diseñadas por BiZkettE1

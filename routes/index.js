@@ -6,35 +6,27 @@ const guestClient = new GuestClient();
 
 const title = "Ericka y David - Julio 20 2019";
 
-router.get("/", (req, res) => {
-  res.render("index", { title });
-});
+router.get("/", (req, res) => res.render("index", { title }));
 
-router.get("/rsvp/:guestId?", async (req, res) => {
-  let result = {};
-  const { guestId } = req.params;
-  if (guestId) {
-    result = await guestClient.confirm(guestId);
-  }
-  return res.render("rsvp", {
-    title,
-    guest: result.guest
-  });
-});
+router.get("/rsvp", (req, res) =>
+  res.render("rsvp", {
+    title
+  })
+);
 
 const confirmHanlder = async (req, res) => {
   let code = req.body.code;
-  let result = { notFound: true };
-  if (!code) {
-    code = req.params.code;
-  }
+  let guest = { notFound: true };
+  if (!code) code = req.params.code;
   if (code) {
-    result = await guestClient.confirm(code);
+    const result = await guestClient.confirm(code);
+    if (result) {
+      guest = result;
+    }
   }
   return res.render("confirm", {
     title,
-    guest: result,
-    notFound: result.notFound
+    guest
   });
 };
 

@@ -12,7 +12,7 @@
 
 .hero .info {
   margin: calc(var(--gutter) * 4);
-  padding: calc(var(--gutter) * 4) calc(var(--gutter) * 4);
+  padding: calc(var(--gutter) * 4);
   text-align: center;
   border: 4px double var(--font-color);
   letter-spacing: 0.25em;

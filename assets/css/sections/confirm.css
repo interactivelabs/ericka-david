@@ -1,0 +1,19 @@
+.confirm {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.confirm img {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+@media all and (min-width: 575px) {
+  #confirm {
+    margin-top: 180px;
+    padding: calc(var(--gutter) * 4);
+  }
+}
