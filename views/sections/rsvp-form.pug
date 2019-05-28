@@ -2,14 +2,21 @@ section#rsvp-page.rsvp-page
   h1.title Confirma
   img.column-content(src="/img/divider2.jpg", alt="Flowers devider")
   .column-content
-    form#rsvp-form
-      label(for="name") Nombre
-      input(type="text", name="name", id="name", placeholder="Nombre")
+    form#rsvp-form(autocomplete="off", method="POST" action="/confirm")
+      label.label(for="name") Nombre
+      input(type="text", id="name", placeholder="Nombre" autocomplete="off")
+      input(type="hidden", name="code", id="code")
+      #info.hide
+        p
+          | Nombre:&nbsp;
+          span#disp-name
+        p
+          | Familia:&nbsp;
+          span#disp-familyname
       button(type="submit")
-        span Buscar
-        i.fal.fa-search.icon
-      ul#guests-list.guests-list
-  #envelope.envelope.new
+        span Confirmar
+        i.fal.fa-check-circle.icon
+  #envelope.envelope.new.hide
     .front
       .mailme
         p Resultado Final

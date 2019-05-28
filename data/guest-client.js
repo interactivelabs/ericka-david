@@ -13,7 +13,7 @@ class GuestClient {
   }
   async searchGuest(name) {
     const sql =
-      "SELECT * FROM guests WHERE firstname ilike $1 OR lastname ilike $1 OR familyname ilike $1;";
+      "SELECT firstname, lastname, code, familyname FROM guests WHERE firstname ilike $1 OR lastname ilike $1 OR familyname ilike $1;";
     const result = await query(sql, [name]);
     return result.rows;
   }
@@ -34,7 +34,10 @@ class GuestClient {
     return values;
   }
   async confirm(code) {
-    return await true;
+    const sql = "SELECT * FROM guests WHERE code = $1;";
+    const result = await query(sql, [code]);
+    const guest = result.rows[0];
+    return guest;
   }
 }
 

@@ -1,5 +1,4 @@
 import Glider from "./glider";
-// import ScrollReveal from "ScrollReveal";
 import differenceInDays from "date-fns/difference_in_days";
 import differenceInHours from "date-fns/difference_in_hours";
 import differenceInMinutes from "date-fns/difference_in_minutes";
@@ -99,24 +98,52 @@ const getGuestLi = guest => {
   return item;
 };
 
-const updateGuest = data => {
-  const guestsList = document.getElementById("guests-list");
-  const { guests } = data;
-  const items = guests.map(g => getGuestLi(g));
-  guestsList.append(items);
-};
-
-const searchGuest = guest =>
-  fetch(`/api/guest/${guest}`)
+const searchGuest = async guest =>
+  await fetch(`/api/guests?name=${guest}`)
     .then(r => r.json())
-    .then(data => updateGuest(data));
+    .then(data => data);
 
 const rsvpInit = () => {
-  const envelope = document.getElementById("envelope");
-  envelope.addEventListener("click", () => {
-    envelope.classList.remove("new");
-    envelope.classList.add("open");
+  let guests = [];
+  const rsvpForm = document.getElementById("rsvp-form");
+  const codeInput = document.getElementById("code");
+  const nameInput = document.getElementById("name");
+  const selectGuest = code => {
+    const info = document.getElementById("info");
+    const name = document.getElementById("disp-name");
+    const familyname = document.getElementById("disp-familyname");
+    const guest = guests.filter(g => (g.code = code))[0];
+    info.classList.remove("hide");
+    name.innerHTML = `${guest.firstname} ${guest.lastname}`;
+    familyname.innerHTML = guest.familyname;
+  };
+  const awesomplete = new Awesomplete(nameInput, {
+    replace: suggestion => {
+      codeInput.value = suggestion.value;
+      nameInput.value = suggestion.label;
+      selectGuest(suggestion.value);
+    }
   });
+  nameInput.addEventListener("keyup", async () => {
+    guests = await searchGuest(nameInput.value);
+    if (guests && guests.length) {
+      const list = guests.map(g => ({
+        label: `${g.firstname} ${g.lastname}`,
+        value: g.code
+      }));
+      awesomplete.list = list;
+    }
+  });
+  rsvpForm.addEventListener("submit", evt => {
+    if (!codeInput.value) {
+      evt.preventDefault();
+    }
+  });
+  // const envelope = document.getElementById("envelope");
+  // envelope.addEventListener("click", () => {
+  //   envelope.classList.remove("new");
+  //   envelope.classList.add("open");
+  // });
 };
 
 window.addEventListener("load", () => {

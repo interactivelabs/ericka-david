@@ -35,13 +35,14 @@
 }
 
 .rsvp-page .label {
-  font-size: 2em;
+  font-size: 1.5em;
+  display: inline-block;
+  margin: calc(var(--gutter) * 4);
 }
 
 .rsvp-page input {
   width: 100%;
   font-family: var(--font-main);
-  margin: calc(var(--gutter) * 4) auto;
   padding: var(--gutter);
   border: 1px solid var(--font-color);
   font-size: 1em;

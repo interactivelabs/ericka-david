@@ -22,4 +22,23 @@ router.get("/rsvp/:guestId?", async (req, res) => {
   });
 });
 
+const confirmHanlder = async (req, res) => {
+  let code = req.body.code;
+  let result = { notFound: true };
+  if (!code) {
+    code = req.params.code;
+  }
+  if (code) {
+    result = await guestClient.confirm(code);
+  }
+  return res.render("confirm", {
+    title,
+    guest: result,
+    notFound: result.notFound
+  });
+};
+
+router.get("/confirm/:code", confirmHanlder);
+router.post("/confirm", confirmHanlder);
+
 module.exports = router;

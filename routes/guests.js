@@ -19,15 +19,9 @@ router.post("/api/guests", secure, async (req, res) => {
   return res.send(result);
 });
 
-router.get("/api/guests/:name", async (req, res) => {
-  const { name } = req.params;
+router.get("/api/guests", async (req, res) => {
+  const { name } = req.query;
   const result = await guestClient.searchGuest(name);
-  return res.send(result);
-});
-
-router.post("/api/guests/confirm/:guestId", async (req, res) => {
-  const { guestId } = req.body;
-  const result = await guestClient.confirm(guestId);
   return res.send(result);
 });
 
