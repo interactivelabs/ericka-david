@@ -5,12 +5,7 @@ import { Form, Text } from "informed";
 const NewGuest = ({ handleSubmit }) => (
   <div className="col-md-8 order-md-1">
     <h4 className="mb-3">Agregar Invitado</h4>
-    <Form
-      onSubmit={values => {
-        handleSubmit(values);
-        console.log(values);
-      }}
-    >
+    <Form onSubmit={values => handleSubmit(values)}>
       <div className="row">
         <div className="col-md-6 mb-3">
           <label htmlFor="firstname">Nombre(s)</label>
@@ -116,7 +111,28 @@ const NewGuest = ({ handleSubmit }) => (
           />
           <div className="invalid-feedback">Zip code required.</div>
         </div>
-        <div className="col-md-3 mb-3" />
+        <div className="col-md-3 mb-3">
+          <label htmlFor="guests">Invitados</label>
+          <Text
+            id="guests"
+            field="guests"
+            type="number"
+            className="form-control"
+            placeholder="0"
+          />
+        </div>
+        <div className="col-md-3 mb-3">
+          <label htmlFor="kids">Niños</label>
+          <Text
+            id="kids"
+            field="kids"
+            type="number"
+            className="form-control"
+            placeholder="0"
+          />
+        </div>
+      </div>
+      <div className="row">
         <div className="col-md-3 mb-3">
           <div>&nbsp;</div>
           <label className="form-check-label" htmlFor="confirmed">

@@ -1,7 +1,7 @@
 import React from "react";
 import { array } from "prop-types";
 
-const GestsTable = ({ guests }) => (
+const GestsTable = ({ guests, deleteGuest }) => (
   <div>
     <hr className="mb-4" />
     <div className="row">
@@ -12,9 +12,12 @@ const GestsTable = ({ guests }) => (
             <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Familia</th>
+            <th scope="col">Invitados</th>
+            <th scope="col">Niños</th>
             <th scope="col" className="text-center">
               Confirmado
             </th>
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -23,8 +26,18 @@ const GestsTable = ({ guests }) => (
               <td>{guest.firstname}</td>
               <td>{guest.lastname}</td>
               <td>{guest.familyname}</td>
+              <td>{guest.guests}</td>
+              <td>{guest.kids}</td>
               <td className="text-center">
                 <input type="checkbox" readOnly checked={guest.confirmed} />
+              </td>
+              <td>
+                <button
+                  type="button"
+                  onClick={() => deleteGuest(guest.guestid)}
+                >
+                  <i className="fal fa-trash" />
+                </button>
               </td>
             </tr>
           ))}

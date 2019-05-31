@@ -19,6 +19,12 @@ router.post("/api/guests", secure, async (req, res) => {
   return res.send(result);
 });
 
+router.delete("/api/guests/:guestid", secure, async (req, res) => {
+  const { guestid } = req.params;
+  const result = await guestClient.deleteGuest(guestid);
+  return res.send(result);
+});
+
 router.get("/api/guests", async (req, res) => {
   const { name } = req.query;
   const result = await guestClient.searchGuest(name);

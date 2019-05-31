@@ -1,5 +1,6 @@
 const uuid = require("uuid/v1");
 const BitlyClient = require("../lib/BitlyClient");
+const mailClient = require("../lib/mailClient");
 const db = require("./db");
 const query = db;
 
@@ -31,6 +32,8 @@ class GuestClient {
     )}) VALUES (${params}) RETURNING guestid`;
     const result = await query(sql, keys.map(k => values[k]));
     values = Object.assign(values, { guestid: result.rows[0].guestid });
+    const contact = await mailClient.addContact(values);
+    console.log(contact);
     return values;
   }
   async confirm(code) {
@@ -38,6 +41,11 @@ class GuestClient {
     const result = await query(sql, [code]);
     const guest = result.rows[0];
     return guest;
+  }
+  async deleteGuest(guestid) {
+    const sql = "DELETE FROM guests WHERE guestid = $1;";
+    const result = await query(sql, [guestid]);
+    return { success: result.rowCount };
   }
 }
 
