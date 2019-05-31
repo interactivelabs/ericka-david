@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const GuestClient = require("../data/guest-client");
-const guestClient = new GuestClient();
+const GuestClient = require("../lib/guest-client");
 const { secure } = require("../lib/route-middleware");
 
+const guestClient = new GuestClient();
 const title = "Ericka y David - Invitados";
 
 router.get("/guests", secure, (req, res) => res.render("guests", { title }));

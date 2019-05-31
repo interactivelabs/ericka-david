@@ -6,9 +6,7 @@ import GuestsCount from "../components/GuestsCount";
 import GuestsTable from "../components/GuestsTable";
 
 const GuestsRegistry = () => {
-  const { guests, addGuests, getGuests, deleteGuest } = useContext(
-    GuestsContext
-  );
+  const { guests, addGuests, deleteGuest } = useContext(GuestsContext);
   return (
     <div className="container">
       <Hero />

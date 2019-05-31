@@ -1,5 +1,5 @@
 import React from "react";
-import { array } from "prop-types";
+import { array, func } from "prop-types";
 
 const GestsTable = ({ guests, deleteGuest }) => (
   <div>
@@ -14,6 +14,7 @@ const GestsTable = ({ guests, deleteGuest }) => (
             <th scope="col">Familia</th>
             <th scope="col">Invitados</th>
             <th scope="col">Niños</th>
+            <th scope="col">Link</th>
             <th scope="col" className="text-center">
               Confirmado
             </th>
@@ -28,6 +29,7 @@ const GestsTable = ({ guests, deleteGuest }) => (
               <td>{guest.familyname}</td>
               <td>{guest.guests}</td>
               <td>{guest.kids}</td>
+              <td>{guest.link}</td>
               <td className="text-center">
                 <input type="checkbox" readOnly checked={guest.confirmed} />
               </td>
@@ -48,7 +50,8 @@ const GestsTable = ({ guests, deleteGuest }) => (
 );
 
 GestsTable.proptypes = {
-  guests: array.isRequired
+  guests: array.isRequired,
+  deleteGuest: func.isRequired
 };
 
 export default GestsTable;
