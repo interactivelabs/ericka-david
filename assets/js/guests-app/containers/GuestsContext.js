@@ -32,11 +32,17 @@ const GuestsProvider = ({ children }) => {
     fetch("/api/guests")
       .then(res => res.json())
       .then(data => setGuests(data));
+  const sendCampaign = () =>
+    fetch("/api/campaign/send")
+      .then(res => res.json())
+      .then(data => console.log(data));
   useEffect(() => {
     getGuests();
   }, []);
   return (
-    <Provider value={{ guests, addGuests, getGuests, deleteGuest }}>
+    <Provider
+      value={{ guests, addGuests, getGuests, deleteGuest, sendCampaign }}
+    >
       {children}
     </Provider>
   );

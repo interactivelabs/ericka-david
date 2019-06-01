@@ -36,6 +36,7 @@ const GestsTable = ({ guests, deleteGuest }) => (
               <td>
                 <button
                   type="button"
+                  className="btn btn-outline-primary"
                   onClick={() => deleteGuest(guest.guestid)}
                 >
                   <i className="fal fa-trash" />
