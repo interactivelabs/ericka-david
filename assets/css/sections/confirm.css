@@ -1,13 +1,17 @@
 .confirm {
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  background-color: #fff;
+}
+
+.confirm h1 {
+  font-size: 3em;
 }
 
 .confirm img {
-  max-width: 1024px;
+  max-width: 824px;
   margin: 0 auto;
 }
 
