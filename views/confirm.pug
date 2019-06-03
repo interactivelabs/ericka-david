@@ -9,7 +9,18 @@ block content
       h1
         | #{guest.firstname}
         | #{guest.lastname}
-      p Gracias por confirmar
+      p Te esperamos
+        if guest.guests
+          span ,  con #{guest.guests} invitados
+        if guest.kids
+          span ,  con #{guest.kids} niños
+      div
+        if guest.confirmed
+          p Gracias por confirmar
+        else
+          a(class="button", href="/confirm_final/" + guest.code)
+            span Confirmar
+            i.fal.fa-check-circle.icon
       img(src="/img/Front_Final_large.jpg")
       img(src="/img/Back_Final_large.jpg")
     footer

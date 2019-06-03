@@ -45,6 +45,7 @@ h6,
 
 button,
 .button {
+  display: inline-block;
   font-size: 1em;
   background-color: transparent;
   border: 1px solid var(--font-color);

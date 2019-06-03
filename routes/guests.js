@@ -43,7 +43,7 @@ const confirmHanlder = async (req, res) => {
   let guest = { notFound: true };
   if (!code) code = req.params.code;
   if (code) {
-    const result = await guestClient.confirm(code);
+    const result = await guestClient.getGuest(code);
     if (result) {
       guest = result;
     }
@@ -56,5 +56,11 @@ const confirmHanlder = async (req, res) => {
 
 router.get("/confirm/:code", confirmHanlder);
 router.post("/confirm", confirmHanlder);
+
+router.get("/confirm_final/:code", async (req, res) => {
+  const { code } = req.params;
+  await guestClient.confirm(code);
+  return res.redirect(`/confirm/${code}`);
+});
 
 module.exports = router;

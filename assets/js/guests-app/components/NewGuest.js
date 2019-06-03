@@ -17,7 +17,6 @@ const NewGuest = ({ handleSubmit }) => (
             className="form-control"
             placeholder="Nombre(s)"
           />
-          <div className="invalid-feedback">El nombre(s) es requerido</div>
         </div>
         <div className="col-md-6 mb-3">
           <label htmlFor="lastname">Apellido(s)</label>
@@ -29,7 +28,6 @@ const NewGuest = ({ handleSubmit }) => (
             className="form-control"
             placeholder="Apellido(s)"
           />
-          <div className="invalid-feedback">El Apellido(s) es requerido</div>
         </div>
       </div>
       <div className="mb-3">
@@ -39,7 +37,6 @@ const NewGuest = ({ handleSubmit }) => (
             <span className="input-group-text">@</span>
           </div>
           <Text
-            required
             id="familyname"
             field="familyname"
             type="text"
@@ -57,9 +54,6 @@ const NewGuest = ({ handleSubmit }) => (
           className="form-control"
           placeholder="you@example.com"
         />
-        <div className="invalid-feedback">
-          Please enter a valid email address for shipping updates.
-        </div>
       </div>
       <div className="mb-3">
         <label htmlFor="phone">Telefono (Cel)</label>
@@ -70,9 +64,6 @@ const NewGuest = ({ handleSubmit }) => (
           className="form-control"
           placeholder="411-533-2525"
         />
-        <div className="invalid-feedback">
-          Please enter a valid email address for shipping updates.
-        </div>
       </div>
       <div className="mb-3">
         <label htmlFor="address">Address</label>
@@ -83,9 +74,6 @@ const NewGuest = ({ handleSubmit }) => (
           className="form-control"
           placeholder="1234 Main St"
         />
-        <div className="invalid-feedback">
-          Please enter your shipping address.
-        </div>
       </div>
       <div className="mb-3">
         <label htmlFor="address2">
@@ -109,7 +97,6 @@ const NewGuest = ({ handleSubmit }) => (
             className="form-control"
             placeholder="91111"
           />
-          <div className="invalid-feedback">Zip code required.</div>
         </div>
         <div className="col-md-3 mb-3">
           <label htmlFor="guests">Invitados</label>

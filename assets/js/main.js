@@ -80,24 +80,6 @@ const mainSiteInit = () => {
   setInterval(() => updateETL, 1000);
 };
 
-const handleConfirm = () => {};
-
-const confirm = guestId =>
-  fetch("/api/guest/confirm")
-    .then(r => r.json())
-    .then(data => handleConfirm(data));
-
-const getGuestLi = guest => {
-  const item = new li();
-  const link = new a();
-  link.innerHTML = guest.name;
-  link.classList.add("guest-link");
-  link.addEventListener("click", () => confirm(guest.id));
-  item.append(link);
-  item.classList.add("guest-item");
-  return item;
-};
-
 const searchGuest = async guest =>
   await fetch(`/api/guests?name=${guest}`)
     .then(r => r.json())
@@ -139,11 +121,6 @@ const rsvpInit = () => {
       evt.preventDefault();
     }
   });
-  // const envelope = document.getElementById("envelope");
-  // envelope.addEventListener("click", () => {
-  //   envelope.classList.remove("new");
-  //   envelope.classList.add("open");
-  // });
 };
 
 window.addEventListener("load", () => {
