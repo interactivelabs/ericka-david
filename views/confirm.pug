@@ -11,9 +11,9 @@ block content
         | #{guest.lastname}
       p Te esperamos
         if guest.guests
-          span ,  con #{guest.guests} invitados
+          span ,  con #{guest.guests} invitado(s)
         if guest.kids
-          span ,  con #{guest.kids} niños
+          span ,  con #{guest.kids} niño(s)
       div
         if guest.confirmed
           p Gracias por confirmar
@@ -21,6 +21,8 @@ block content
           a(class="button", href="/confirm_final/" + guest.code)
             span Confirmar
             i.fal.fa-check-circle.icon
+      p
+        a(href="/") "Ver página web de la boda."
       img(src="/img/Front_Final_large.jpg")
       img(src="/img/Back_Final_large.jpg")
     footer

@@ -81,7 +81,7 @@ const mainSiteInit = () => {
 };
 
 const searchGuest = async guest =>
-  await fetch(`/api/guests?name=${guest}`)
+  await fetch(`/api/search/guests?name=${guest}`)
     .then(r => r.json())
     .then(data => data);
 

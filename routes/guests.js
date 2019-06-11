@@ -32,7 +32,7 @@ router.get("/api/campaign/send", secure, async (req, res) => {
   return res.send(result);
 });
 
-router.get("/api/guests", async (req, res) => {
+router.get("/api/search/guests", async (req, res) => {
   const { name } = req.query;
   const result = await guestClient.searchGuest(name);
   return res.send(result);
