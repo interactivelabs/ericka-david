@@ -7,7 +7,7 @@ import addHours from "date-fns/add_hours";
 
 require("waypoints/lib/noframework.waypoints");
 
-const WEDDING_DATE = new Date(2019, 7, 20, 18, 0);
+const WEDDING_DATE = new Date("2019-07-20T18:00:00");
 
 const menuInit = us => {
   const header = document.getElementById("header");
